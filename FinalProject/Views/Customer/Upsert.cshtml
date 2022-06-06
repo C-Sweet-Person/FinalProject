@@ -1,0 +1,26 @@
+﻿@model FinalProject.Models.UpsertCustomer
+@{
+    ViewBag.Title = "Signup Page";
+}
+<h2>Add an Customer</h2>
+@using (Html.BeginForm("Upsert", "Customer", FormMethod.Post))
+{
+    @Html.HiddenFor(c => c.customer.CustomerID);
+    <span class="label label-primary">Name:</span>@Html.TextBoxFor(c => c.customer.Name, new { @class = "form-control" });
+    <div class="autocomplete-container" id="autocomplete-container"></div>
+    <span class="label label-primary">Address:</span>
+    @Html.TextBoxFor(c => c.customer.Address, new { @class = "form-control", id = "customerAddress" });
+    <span class="label label-primary">City:</span>@Html.TextBoxFor(c => c.customer.City, new { @class = "form-control", id = "customerCity"});
+    <span class="label label-primary">State</span>
+    @Html.TextBoxFor(c => c.customer.State, new { @class = "form-control", id = "customerState" });
+    <span class="label label-primary">Zipcode:</span>@Html.TextBoxFor(c => c.customer.ZipCode, new { @class = "form-control", id = "customerZip" });
+
+    <input type="submit" id="Submit" value="submit" class="btn btn-info" />
+    <div id="SubmissionText"></div>
+}
+<input name="Test" value="dbInfo" id="customerAddress" />
+<input name="Test" value="dbInfo" id="customerCity" />
+
+<script src="~/Scripts/main.js"></script>
+
+

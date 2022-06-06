@@ -1,0 +1,38 @@
+﻿@model List<FinalProject.Models.State>
+@{
+    ViewBag.Title = "All";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List of States</h2>
+<div class="row">
+    <div class="col-md-6">
+        <input id="txtsearch" style="text" class="form-control" onkeyup="search();" placeholder="Search..." /><br />
+        <input type="button" class="btn btn-info" value="search" onclick="search();" />
+    </div>
+</div>
+<a href="/State/Upsert/0">Add State Data</a>
+
+<table class="sortable table table-hover">
+    <thead>
+        <tr>
+            <th>State Code</th>
+            <th>State Name</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var state in Model)
+        {
+            <tr>
+                <td>@state.StateCode</td>
+                <td>@state.StateName</td>
+                <td><a href="/State/Upsert/@state.StateCode">Edit</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    Sortable.baseUrl = "/State/All/";
+</script>

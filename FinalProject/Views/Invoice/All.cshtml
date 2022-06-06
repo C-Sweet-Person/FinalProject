@@ -1,0 +1,59 @@
+﻿@model List<FinalProject.Models.Invoice>
+@{
+    ViewBag.Title = "All";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List of Invoices</h2>
+<div class="row">
+    <div class="col-md-6">
+        <input id="txtsearch" style="text" class="form-control" onkeyup="search();" placeholder="Search..." /><br />
+        <input type="button" class="btn btn-info" value="search" onclick="search();" />
+    </div>
+</div>
+<a href="/Invoice/Upsert/0">Add Invoice Data</a>
+
+<table class="sortable table table-hover">
+    <thead>
+        <tr>
+            <th onclick="Sortable.Sort(0);">Invoice ID</th>
+            <th onclick="Sortable.Sort(1);">Customer ID</th>
+            <th onclick="Sortable.Sort(2);">Invoice Date</th>
+            <th onclick="Sortable.Sort(3);">Product Total</th>
+            <th onclick="Sortable.Sort(4);">Sales Tax</th>
+            <th onclick="Sortable.Sort(5);">Shipping</th>
+            <th onclick="Sortable.Sort(6);">Total</th>
+
+            <th>Edit</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var invoice in Model)
+        {
+        <tr>
+            <td>@invoice.InvoiceID</td>
+            <td>@invoice.CustomerID</td>
+            <td>@invoice.InvoiceDate</td>
+            <td>$@invoice.ProductTotal</td>
+            <td>$@invoice.SalesTax</td>
+            <td>$@invoice.Shipping</td>
+            <td>$@invoice.InvoiceTotal</td>
+
+            <td><a href="/Invoice/Upsert/@invoice.InvoiceID">Edit</a></td>
+        </tr>
+        }
+    </tbody>
+    @*
+
+            public int InvoiceID { get; set; }
+        public int CustomerID { get; set; }
+        public System.DateTime InvoiceDate { get; set; }
+        public decimal ProductTotal { get; set; }
+        public decimal SalesTax { get; set; }
+        public decimal Shipping { get; set; }
+        public decimal InvoiceTotal { get; set; }*@
+</table>
+<script>
+    Sortable.baseUrl = "/Invoice/All/";
+</script>

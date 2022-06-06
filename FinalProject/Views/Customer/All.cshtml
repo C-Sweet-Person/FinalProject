@@ -1,0 +1,54 @@
+﻿@model List<FinalProject.Models.Customer>
+@{
+    ViewBag.Title = "All";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*
+    public int CustomerID { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string ZipCode { get; set; }
+*@
+<h2>List of Customers</h2>
+<div class="row">
+    <div class="col-md-6">
+        <input id="txtsearch" style="text" class="form-control" onkeyup="search();" placeholder="Search..." /><br />
+        <input type="button" class="btn btn-info" value="search" onclick="search();" />
+    </div>
+</div>
+<a href="/Customer/Upsert/0">Add Customer Data</a>
+
+<table class="sortable table table-hover">
+    <thead>
+        <tr>
+            <th>Customer ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zipcode</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var Customer in Model)
+        {
+        <tr>
+            <td>@Customer.CustomerID</td>
+            <td>@Customer.Name</td>
+            <td>@Customer.Address</td>
+            <td>@Customer.City</td>
+            <td>@Customer.State</td>
+            <td>@Customer.ZipCode</td>
+            <td><a href="/Customer/Upsert/@Customer.CustomerID">Edit</a></td>
+        </tr>
+        }
+    </tbody>
+</table>
+<script>
+    Sortable.baseUrl = "/Customer/All/";
+</script>
