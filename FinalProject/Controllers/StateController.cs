@@ -10,12 +10,29 @@ using System.Data.Entity.Migrations;
 public class StateController : Controller
     {
         // GET: State
-        public ActionResult All()
+        public ActionResult All(string id, int sortBy = 0)
         {
-        var context = new Entities();
-        List<State> Allstates = new List<State>();
-        Allstates = context.States.ToList<State>();
-            return View(Allstates);
+            Entities context = new Entities();
+            List<State> allStates;
+            switch (sortBy)
+            {
+                case 0:
+                    {
+                    allStates = context.States.OrderBy(i => i.StateName).ToList();
+                        break;
+                    }
+                case 1:
+                    {
+                    allStates = context.States.OrderBy(i => i.StateCode).ToList();
+                        break;
+                    }
+                default:
+                    {
+                    allStates = context.States.OrderBy(i => i.StateName).ToList();
+                        break;
+                    }
+            }
+            return View(allStates);
         }
     [HttpGet]
     public ActionResult Upsert(string id)

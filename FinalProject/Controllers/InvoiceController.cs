@@ -52,6 +52,11 @@ namespace FinalProject.Controllers
                         allInvoices = context.Invoices.OrderBy(i => i.InvoiceTotal).ToList();
                         break;
                     }
+                case 7:
+                    {
+                        allInvoices = context.Invoices.OrderBy(i => i.InvoiceLineItems.Count).ToList();
+                        break;
+                    }
                 default:
                     {
                         allInvoices = context.Invoices.OrderBy(i => i.InvoiceID).ToList();

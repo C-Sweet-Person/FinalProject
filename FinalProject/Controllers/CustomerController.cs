@@ -21,7 +21,42 @@ namespace Database_Project_Deux.Controllers
             allCustomers = context.Customers.ToList<Customer>();
             switch (sortBy)
             {
-              
+                case 0:
+                    {
+                        allCustomers = context.Customers.OrderBy(i => i.CustomerID).ToList();
+                        break;
+                    }
+                case 1:
+                    {
+                        allCustomers = context.Customers.OrderBy(i => i.Name).ToList();
+                        break;
+                    }
+                case 2:
+                    {
+                        allCustomers = context.Customers.OrderBy(i => i.Address).ToList();
+                        break;
+                    }
+                case 3:
+                    {
+                        allCustomers = context.Customers.OrderBy(i => i.City).ToList();
+                        break;
+                    }
+                case 4:
+                    {
+                        allCustomers = context.Customers.OrderBy(i => i.State).ToList();
+                        break;
+                    }
+                case 5:
+                    {
+                        allCustomers = context.Customers.OrderBy(i => i.ZipCode).ToList();
+                        break;
+                    }
+                default:
+                    {
+                        allCustomers = context.Customers.OrderBy(i => i.CustomerID).ToList();
+                        break;
+                    }
+
             }
 
             return View(allCustomers);

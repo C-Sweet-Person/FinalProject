@@ -10,12 +10,41 @@ namespace FinalProject.Controllers
     public class ProductController : Controller
     {
        
-        public ActionResult All()
+        public ActionResult All(int sortBy = 0)
         {
             Entities context = new Entities();
             List<Product> allProducts = new List<Product>();
             allProducts = context.Products.ToList<Product>();
+            switch (sortBy)
+            {
+                case 0:
+                    {
+                        allProducts = context.Products.OrderBy(i => i.ProductCode).ToList();
+                        break;
+                    }
+                case 1:
+                    {
+                        allProducts = context.Products.OrderBy(i => i.Description).ToList();
+                        break;
+                    }
+                case 2:
+                    {
+                        allProducts = context.Products.OrderBy(i => i.UnitPrice).ToList();
+                        break;
+                    }
+                case 3:
+                    {
+                        allProducts = context.Products.OrderBy(i => i.OnHandQuantity).ToList();
+                        break;
+                    }
+                default:
+                    {
+                        allProducts = context.Products.OrderBy(i => i.ProductCode).ToList();
+                        break;
+                    }
+            }
             return View(allProducts);
+
         }
         /// <summary>
         /// Is the get of the upsert.
