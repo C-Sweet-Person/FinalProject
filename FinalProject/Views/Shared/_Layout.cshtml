@@ -6,8 +6,9 @@
     <title>@ViewBag.Title - Book Store</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @*<script src="~/Scripts/main.js"></script>*@
+    <script src="~/Scripts/Search.js"></script>
     <script src="~/Scripts/Sortable.js"></script>
+    <link rel="stylesheet" href="~/Content/Style.css"
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -29,8 +30,6 @@
         I honestly thought I did but I didn't realize it.
                     *@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("States", "All", "State")</li>
                     <li>@Html.ActionLink("Customers", "All", "Customer")</li>
                     <li>@Html.ActionLink("Products", "All", "Product")</li>

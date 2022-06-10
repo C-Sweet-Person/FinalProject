@@ -23,6 +23,7 @@ namespace FinalProject.Models
         public string Description { get; set; }
         public decimal UnitPrice { get; set; }
         public int OnHandQuantity { get; set; }
+        public int ProductId { get; set; }
     
         public virtual ICollection<InvoiceLineItem> InvoiceLineItems { get; set; }
     }

@@ -1,0 +1,14 @@
+﻿@model FinalProject.Models.State
+@{
+    ViewBag.Title = "Upsert State";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Upsert State</h2>
+
+@using (Html.BeginForm("Upsert", "State", FormMethod.Post))
+{
+    <span>State Code</span>@Html.TextBoxFor(i => i.StateCode)
+    <span>State Name</span>@Html.TextBoxFor(i => i.StateName)
+    <button type="submit">Submit</button>
+}

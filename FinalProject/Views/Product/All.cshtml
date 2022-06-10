@@ -17,15 +17,15 @@
         <input type="button" class="btn btn-info" value="search" onclick="search();" />
     </div>
 </div>
-<a href="/Customer/Upsert/0">Add Product Data</a>
+<a href="/Product/Upsert/">Add Product Data</a>
 
 <table class="sortable table table-hover">
     <thead>
         <tr>
-            <th onclick="Sortable.Sort(0)">Product Code</th>
-            <th onclick="Sortable.Sort(1)">Description</th>
-            <th onclick="Sortable.Sort(2)">Price Per Object</th>
-            <th onclick="Sortable.Sort(3)">Quanity on Hand</th>
+            <th onclick="Sortable.Sort(1)">Product Code</th>
+            <th onclick="Sortable.Sort(2)">Description</th>
+            <th onclick="Sortable.Sort(3)">Price Per Object</th>
+            <th onclick="Sortable.Sort(4)">Quanity on Hand</th>
             <th>Edit</th>
         </tr>
     </thead>
@@ -38,7 +38,7 @@
             <td>@product.Description</td>
             <td>@product.UnitPrice</td>
             <td>@product.OnHandQuantity</td>
-            <td><a href="/Product/Upsert/@product.ProductCode">Edit</a></td>
+            <td><a href="/Product/Upsert/?productCode=@product.ProductCode">Edit</a></td>
         </tr>
         }
     </tbody>

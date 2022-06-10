@@ -59,6 +59,7 @@ warning 6002: The table/view 'C:\FILES\FINALPROJECT\FINALPROJECT\FINALPROJECT\AP
           <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="UnitPrice" Type="money" Nullable="false" />
           <Property Name="OnHandQuantity" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="States">
           <Key>
@@ -244,6 +245,7 @@ FROM [dbo].[OrderOptions] AS [OrderOptions]</DefiningQuery>
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="OnHandQuantity" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="InvoiceLineItems" Relationship="Self.FK_InvoiceLineItems_Products" FromRole="Products" ToRole="InvoiceLineItems" />
         </EntityType>
         <EntityType Name="State">
@@ -326,7 +328,7 @@ FROM [dbo].[OrderOptions] AS [OrderOptions]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="BooksEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="InvoiceLineItems" EntityType="Self.InvoiceLineItem" />
           <EntitySet Name="Invoices" EntityType="Self.Invoice" />
@@ -386,7 +388,7 @@ FROM [dbo].[OrderOptions] AS [OrderOptions]</DefiningQuery>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="BooksModelStoreContainer" CdmEntityContainer="BooksEntities">
+        <EntityContainerMapping StorageEntityContainer="BooksModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="BooksModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
@@ -430,6 +432,7 @@ FROM [dbo].[OrderOptions] AS [OrderOptions]</DefiningQuery>
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
                 <ScalarProperty Name="OnHandQuantity" ColumnName="OnHandQuantity" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

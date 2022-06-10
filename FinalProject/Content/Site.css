@@ -20,7 +20,15 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 1000px;
+}
+#fullAddress {
+    width: 480px;
+    padding: 10px;
+    background-color: grey;
+    color:white;
+    border-radius: 10px;
+    height: 90px;
 }
 .autocomplete-container {
     /*the container must be positioned relative:*/

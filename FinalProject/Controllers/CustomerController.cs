@@ -8,12 +8,15 @@ using System.Web.Mvc;
 
 namespace Database_Project_Deux.Controllers
 {
+    /// <summary>
+    /// This method gets the customer from the HTTP
+    /// </summary>
     public class CustomerController : Controller
     {
         // GET: Customer
         public ActionResult All(int sortBy = 0)
         {
-            var context = new BooksEntities();
+            var context = new Entities();
             List<Customer> allCustomers;
             allCustomers = context.Customers.ToList<Customer>();
             switch (sortBy)
@@ -23,10 +26,15 @@ namespace Database_Project_Deux.Controllers
 
             return View(allCustomers);
         }
+       /// <summary>
+       /// This method is used for getting the customer info from the url and returning the view.
+       /// </summary>
+       /// <param name="id">CustomerID</param>
+       /// <returns>The customer to the view.</returns>
         [HttpGet]
         public ActionResult Upsert(int id = 0)
         {
-            BooksEntities context = new BooksEntities();
+            Entities context = new Entities();
             Customer newCustomer = context.Customers.Where(p => p.CustomerID == id).FirstOrDefault();
             if (newCustomer == null)
             {
@@ -42,11 +50,16 @@ namespace Database_Project_Deux.Controllers
             };
             return View(UC);
         }
+        /// <summary>
+        /// This method is used to post the customer to the database.
+        /// </summary>
+        /// <param name="model">This is the upsert Customer model containing the lists.</param>
+        /// <returns>The user back to the homepage..</returns>
         [HttpPost]
         public ActionResult Upsert(UpsertCustomer model)
         {
             Customer newCustomer = model.customer;
-            BooksEntities context = new BooksEntities();
+            Entities context = new Entities();
             try
             {
                 if (context.Customers.Where(s => s.CustomerID == newCustomer.CustomerID).Count() > 0)

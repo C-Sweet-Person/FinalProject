@@ -1,0 +1,23 @@
+﻿@model FinalProject.Models.Product
+@{
+    ViewBag.Title = "Add Product";
+}
+<h2>Add an Product</h2>
+@using (Html.BeginForm("Upsert", "Product", FormMethod.Post))
+{
+    @Html.HiddenFor(p => p.ProductCode);
+    <span>Description:</span>
+    @Html.TextBoxFor(p => p.Description, new { @class = "form-control" });
+    <span>Unit Price:</span>
+    @Html.TextBoxFor(p => p.UnitPrice, new { @class = "form-control" });
+    <span>On hand Stock:</span>
+    @Html.TextBoxFor(p => p.OnHandQuantity, new { @class = "form-control" });
+
+
+
+
+    <input type="submit" id="Submit" value="submit" class="btn btn-info" />
+    <div id="SubmissionText"></div>
+}
+
+<script src="~/Scripts/main.js"></script>

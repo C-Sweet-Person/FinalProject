@@ -1,0 +1,40 @@
+﻿body {
+    background-color: lightgreen;
+    font-family: Consolas;
+}
+
+.navbar-header
+{
+    background-color: darkblue;
+    color: black;
+    padding: 5px;
+}
+.navbar-brand
+{
+    color: white;
+}
+
+.navbar-collapse
+{
+    background-color: darkblue;
+}
+.table
+{
+    background-color: white;
+    border: solid thin black;
+    transition: all 0.3s;
+}
+
+.table th
+{
+    background-color: blue;
+    color:white;
+}
+tbody tr
+{
+    transition: all 0.4s;
+}
+tbody tr:hover
+{
+    background-color: lightblue !important;
+}

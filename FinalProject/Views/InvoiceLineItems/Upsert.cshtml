@@ -1,0 +1,24 @@
+﻿@model FinalProject.Models.LineItemDTO
+@{
+    ViewBag.Title = "Upsert Invoice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Upsert Invoice Line Item</h2>
+
+@using (Html.BeginForm("Upsert", "InvoiceLineItems", FormMethod.Post))
+{
+    @Html.HiddenFor(i => i.LineItem.InvoiceID)
+    <input value="@Model.LineItem.ProductCode" type="text" list="productList" class="form-control" name="ProductCode" />
+    <datalist id="productList">
+        @foreach (var product in Model.Products)
+        {
+            <option value="@product.ProductCode" />
+        }
+    </datalist>
+    <span>UnitPrice</span>@Html.TextBoxFor(i => i.LineItem.UnitPrice)
+    <span>Quantity</span>@Html.TextBoxFor(i => i.LineItem.Quantity)
+    <button type="submit">Submit</button>
+
+
+}

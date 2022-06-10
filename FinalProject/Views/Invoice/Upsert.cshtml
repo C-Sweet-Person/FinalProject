@@ -1,0 +1,60 @@
+﻿@model FinalProject.Models.InvoiceDTO
+@{
+    ViewBag.Title = "Upsert an Invoice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Upsert an invoice</h2>
+
+@using (Html.BeginForm("Upsert", "Invoice", FormMethod.Post))
+{
+    @Html.HiddenFor(i => i.Invoice.InvoiceID);
+    <span>Customer Id:</span>
+    <input value="@Model.Invoice.CustomerID - @Model.Invoice.Customer.Name" type="text" list="customersList" class="form-control" name="customerId" />
+    <datalist id="customersList">
+        @foreach (var customer in Model.Customers)
+        {
+            <option value="@customer.CustomerID - @customer.Name" />
+        }
+    </datalist>
+    <span>Invoice Date:</span>
+    @Html.TextBoxFor(i => i.Invoice.InvoiceDate, new { @class = "form-control" })
+    <span>Product Total:</span>
+    <input value="@Model.Invoice.ProductTotal" type="text" readonly class="form-control" name="Invoice.ProductTotal" />
+    <span>Sales Tax:</span>
+    @Html.TextBoxFor(i => i.Invoice.SalesTax, new { @class = "form-control" })
+    <span>Shipping Tax</span>
+    @Html.TextBoxFor(i => i.Invoice.Shipping, new { @class = "form-control" })
+    <span>Invoice Total:</span>
+    <input value="@Model.Invoice.InvoiceTotal" type="text" readonly class="form-control" name="Invoice.InvoiceTotal" />
+
+    <button type="submit" class="btn">Save Invoice</button>
+}
+<hr />
+<h4>Invoice Line Items Section</h4>
+<a href="/InvoiceLineItems/Upsert/?invoiceId=@Model.Invoice.InvoiceID&productCode=0">Add new Line Item</a>
+
+<datalist id="products">
+    @foreach (var product in Model.Products)
+    {
+        <option value="@product.ProductCode"></option>
+    }
+</datalist>
+@foreach (var lineItem in Model.Invoice.InvoiceLineItems)
+{
+    <input type="hidden" name="InvoiceID" value="@lineItem.InvoiceID" />
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <span>Product Code</span>
+                </div>
+                <div class="col-md-6">
+                    <input name="ProductCode" list="products" readonly value="@lineItem.ProductCode" type="text" class="form-control" />
+                </div>
+            </div>
+            <a href="/InvoiceLineItems/Upsert/?invoiceId=@lineItem.InvoiceID&productCode=@lineItem.ProductCode">Edit</a>
+
+        </div>
+    </div>
+}

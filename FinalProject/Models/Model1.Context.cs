@@ -16,10 +16,10 @@ namespace FinalProject.Models
     using System.Data.Objects.DataClasses;
     using System.Linq;
     
-    public partial class BooksEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public BooksEntities()
-            : base("name=BooksEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
